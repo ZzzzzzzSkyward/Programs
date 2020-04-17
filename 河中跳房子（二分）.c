@@ -9,19 +9,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 int* arr;
-int d,n,i,k,maxv,minv,ans,mid,j;
+int d,n,i,k,lo,hi,ans,mid,j;
 int main()
 {
-	scanf("%d%d%d",&maxv,&d,&n);
+	scanf("%d%d%d",&hi,&d,&n);
 	d+=2;
 	arr=(int*)malloc(sizeof(int)*d);
-	arr[d-1]=maxv;
+	arr[d-1]=hi;
 	arr[0]=0;
 	for(i=1;i<=d;i++) scanf("%d",arr+i);
-	minv=0;
-	mid=((minv+maxv)>>1);
-	while(minv<=maxv){
-	//printf("%d %d %d\n",minv,mid,maxv);
+	lo=0;
+	mid=(lo+hi)>>1;
+	while(lo<=hi){
+	//printf("%d %d %d\n",lo,mid,hi);
 		j=k=0;
 		i=1;
 		while(i<=d){
@@ -32,13 +32,12 @@ int main()
 			i++;
 		}
 		if(k>(d-n-2)){
-			minv=mid+1;
+			lo=mid+1;
 			ans=mid;
 		}
-		else maxv=mid-1;
-		mid=((minv+maxv)>>1);
+		else hi=mid-1;
+		mid=(hi+lo)>>1;
 	}
 	printf("%d",ans);
 	return 0;
 }
-	
